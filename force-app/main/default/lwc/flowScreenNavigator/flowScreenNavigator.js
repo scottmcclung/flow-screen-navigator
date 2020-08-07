@@ -1,33 +1,29 @@
-import { LightningElement, api, track } from "lwc";
 import {
-  FlowNavigationPauseEvent,
-  FlowNavigationNextEvent,
+  FlowAttributeChangeEvent,
   FlowNavigationBackEvent,
   FlowNavigationFinishEvent,
-  FlowAttributeChangeEvent
+  FlowNavigationNextEvent,
+  FlowNavigationPauseEvent
 } from "lightning/flowSupport";
+import { LightningElement, api, track } from "lwc";
 
 export default class FlowScreenNavigator extends LightningElement {
   @api availableActions = [];
 
   @api btn1Label;
   @api btn1Action;
-  @api btn1Value;
   @api btn1Style;
 
   @api btn2Label;
   @api btn2Action;
-  @api btn2Value;
   @api btn2Style;
 
   @api btn3Label;
   @api btn3Action;
-  @api btn3Value;
   @api btn3Style;
 
   @api btn4Label;
   @api btn4Action;
-  @api btn4Value;
   @api btn4Style;
 
   @api value;
@@ -75,7 +71,7 @@ export default class FlowScreenNavigator extends LightningElement {
     if (!this.buttonCollection.has(buttonLabel)) return;
 
     const buttonObject = this.buttonCollection.get(buttonLabel);
-    this.value = buttonObject.value;
+    this.value = buttonObject.label;
     this.handleAction(buttonObject.action);
   }
 
@@ -112,7 +108,6 @@ export default class FlowScreenNavigator extends LightningElement {
       this.buttonCollection.set(this.btn1Label, {
         label: this.btn1Label,
         action: this.btn1Action,
-        value: this.btn1Value,
         style: this.btn1Style
       });
     }
@@ -121,7 +116,6 @@ export default class FlowScreenNavigator extends LightningElement {
       this.buttonCollection.set(this.btn2Label, {
         label: this.btn2Label,
         action: this.btn2Action,
-        value: this.btn2Value,
         style: this.btn2Style
       });
     }
@@ -130,7 +124,6 @@ export default class FlowScreenNavigator extends LightningElement {
       this.buttonCollection.set(this.btn3Label, {
         label: this.btn3Label,
         action: this.btn3Action,
-        value: this.btn3Value,
         style: this.btn3Style
       });
     }
@@ -139,7 +132,6 @@ export default class FlowScreenNavigator extends LightningElement {
       this.buttonCollection.set(this.btn4Label, {
         label: this.btn4Label,
         action: this.btn4Action,
-        value: this.btn4Value,
         style: this.btn4Style
       });
     }
