@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>48.0</apiVersion>
-    <isExposed>false</isExposed>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen" configurationEditor="c-flow-screen-navigator-configuration-editor">
+            <property name="btn1Label" label="Button 1 Label" type="String" role="inputOnly" />
+            <property name="btn1Action" label="Button 1 Navigation Action" type="String" description="Valid values are NONE, PAUSE, NEXT, BACK, or FINISH" default="NONE" role="inputOnly" />
+            <property name="btn1Value" label="Button 1 Value" type="String" role="inputOnly" />
+            <property name="btn1Style" label="Button 1 Style" type="String" description="Valid values are Base, Neutral, Brand, Descructive, Success, Inverse" default="Neutral" role="inputOnly" />
+            
+            <property name="btn2Label" label="Button 2 Label" type="String" role="inputOnly" />
+            <property name="btn2Action" label="Button 2 Navigation Action" type="String" description="Valid values are NONE, PAUSE, NEXT, BACK, or FINISH" default="NONE" role="inputOnly" />
+            <property name="btn2Value" label="Button 2 Value" type="String" role="inputOnly" />
+            <property name="btn2Style" label="Button 2 Style" type="String" description="Valid values are Base, Neutral, Brand, Descructive, Success, Inverse" default="Neutral" role="inputOnly" />
+            
+            <property name="btn3Label" label="Button 3 Label" type="String" role="inputOnly" />
+            <property name="btn3Action" label="Button 3 Navigation Action" type="String" description="Valid values are NONE, PAUSE, NEXT, BACK, or FINISH" default="NONE" role="inputOnly" />
+            <property name="btn3Value" label="Button 3 Value" type="String" role="inputOnly" />
+            <property name="btn3Style" label="Button 3 Style" type="String" description="Valid values are Base, Neutral, Brand, Descructive, Success, Inverse" default="Neutral" role="inputOnly" />
+            
+            <property name="btn4Label" label="Button 4 Label" type="String" role="inputOnly" />
+            <property name="btn4Action" label="Button 4 Navigation Action" type="String" description="Valid values are NONE, PAUSE, NEXT, BACK, or FINISH" default="NONE" role="inputOnly" />
+            <property name="btn4Value" label="Button 4 Value" type="String" role="inputOnly" />
+            <property name="btn4Style" label="Button 4 Style" type="String" description="Valid values are Base, Neutral, Brand, Descructive, Success, Inverse" default="Neutral" role="inputOnly" />
+
+            <property name="value" label="Value" type="String" role="outputOnly" />
+        </targetConfig>
+    </targetConfigs>
+
 </LightningComponentBundle>

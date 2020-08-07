@@ -1,3 +1,45 @@
 <template>
-    
+  <div
+    class="slds-size_full slds-p-vertical_small slds-border_top slds-grid slds-grid_align-end"
+  >
+    <template if:true={showBtn1}>
+        <button
+          class="slds-button slds-button_neutral slds-grid slds-grid_vertical-align-center"
+          data-label={btn1Label}
+          onclick={handleButtonClick}
+        >
+          <span>{btn1Label}</span>
+        </button>
+    </template>
+
+    <template if:true={showBtn2}>
+        <button
+          class="slds-button slds-button_neutral slds-grid slds-grid_vertical-align-center"
+          data-label={btn2Label}
+          onclick={handleButtonClick}
+        >
+          <span>{btn2Label}</span>
+        </button>
+    </template>
+
+    <template if:true={showBtn3}>
+        <button
+          class="slds-button slds-button_neutral slds-grid slds-grid_vertical-align-center"
+          data-label={btn3Label}
+          onclick={handleButtonClick}
+        >
+          <span>{btn3Label}</span>
+        </button>
+    </template>
+
+    <template if:true={showBtn4}>
+        <button
+          class="slds-button slds-button_neutral slds-grid slds-grid_vertical-align-center"
+          data-label={btn4Label}
+          onclick={handleButtonClick}
+        >
+          <span>{btn4Label}</span>
+        </button>
+    </template>
+  </div>
 </template>
