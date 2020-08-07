@@ -21,9 +21,6 @@ export default class FlowScreenNavigatorPicklist extends LightningElement {
   set options(values) {
     values = values || [];
     this.mapOptions(values);
-
-    console.log("selected value", JSON.stringify(this.value));
-    console.log("options:", JSON.stringify(this._options));
   }
 
   mapOptions(values) {

@@ -2,6 +2,7 @@
   <lightning-accordion
     onsectiontoggle={handleToggleSection}
     active-section-name="btn1"
+    allow-multiple-sections-open
   >
     <lightning-accordion-section name="btn1" label="Button 1">
       <div class="slds-p-around_xx-small">
@@ -23,172 +24,103 @@
         ></c-flow-screen-navigator-picklist>
       </div>
       <div class="slds-p-around_xx-small">
-        <div class="slds-form-element">
-          <label class="slds-form-element__label" for="style-01"
-            >Button 1 Style</label
-          >
-          <div class="slds-form-element__control">
-            <div class="slds-select_container">
-              <select
-                class="slds-select"
-                id="style-01"
-                data-label="btn1Style"
-                onchange={handleChange}
-              >
-                <option value="">Please select</option>
-                <template for:each={_styles} for:item="style">
-                  <option key={style}>
-                    {style}
-                  </option>
-                </template>
-              </select>
-            </div>
-          </div>
-        </div>
+        <c-flow-screen-navigator-picklist
+          name="btn1Style"
+          label="Button 1 Style"
+          value={btn1Style}
+          options={styles}
+          onchange={handleChange}
+        ></c-flow-screen-navigator-picklist>
       </div>
     </lightning-accordion-section>
+
     <lightning-accordion-section name="btn2" label="Button 2">
       <div class="slds-p-around_xx-small">
         <lightning-input
           type="text"
           label="Button 2 Label"
+          name="btn2Label"
           value={btn2Label}
           onchange={handleChange}
         ></lightning-input>
       </div>
       <div class="slds-p-around_xx-small">
-        <div class="slds-form-element">
-          <label class="slds-form-element__label" for="nav-02"
-            >Button 2 Navigation Action</label
-          >
-          <div class="slds-form-element__control">
-            <div class="slds-select_container">
-              <select class="slds-select" id="nav-02">
-                <option value="">Please select</option>
-                <template for:each={_actions} for:item="action">
-                  <option key={action}>
-                    {action}
-                  </option>
-                </template>
-              </select>
-            </div>
-          </div>
-        </div>
+        <c-flow-screen-navigator-picklist
+          name="btn2Action"
+          label="Button 2 Navigation Action"
+          value={btn2Action}
+          options={actions}
+          onchange={handleChange}
+        ></c-flow-screen-navigator-picklist>
       </div>
       <div class="slds-p-around_xx-small">
-        <div class="slds-form-element">
-          <label class="slds-form-element__label" for="style-02"
-            >Button 2 Style</label
-          >
-          <div class="slds-form-element__control">
-            <div class="slds-select_container">
-              <select class="slds-select" id="style-02">
-                <option value="">Please select</option>
-                <template for:each={_styles} for:item="style">
-                  <option key={style}>
-                    {style}
-                  </option>
-                </template>
-              </select>
-            </div>
-          </div>
-        </div>
+        <c-flow-screen-navigator-picklist
+          name="btn2Style"
+          label="Button 2 Style"
+          value={btn2Style}
+          options={styles}
+          onchange={handleChange}
+        ></c-flow-screen-navigator-picklist>
       </div>
     </lightning-accordion-section>
+
     <lightning-accordion-section name="btn3" label="Button 3">
       <div class="slds-p-around_xx-small">
         <lightning-input
           type="text"
           label="Button 3 Label"
+          name="btn3Label"
           value={btn3Label}
           onchange={handleChange}
         ></lightning-input>
       </div>
       <div class="slds-p-around_xx-small">
-        <div class="slds-form-element">
-          <label class="slds-form-element__label" for="nav-03"
-            >Button 3 Navigation Action</label
-          >
-          <div class="slds-form-element__control">
-            <div class="slds-select_container">
-              <select class="slds-select" id="nav-03">
-                <option value="">Please select</option>
-                <template for:each={_actions} for:item="action">
-                  <option key={action}>
-                    {action}
-                  </option>
-                </template>
-              </select>
-            </div>
-          </div>
-        </div>
+        <c-flow-screen-navigator-picklist
+          name="btn3Action"
+          label="Button 3 Navigation Action"
+          value={btn3Action}
+          options={actions}
+          onchange={handleChange}
+        ></c-flow-screen-navigator-picklist>
       </div>
       <div class="slds-p-around_xx-small">
-        <div class="slds-form-element">
-          <label class="slds-form-element__label" for="style-03"
-            >Button 3 Style</label
-          >
-          <div class="slds-form-element__control">
-            <div class="slds-select_container">
-              <select class="slds-select" id="style-03">
-                <option value="">Please select</option>
-                <template for:each={_styles} for:item="style">
-                  <option key={style}>
-                    {style}
-                  </option>
-                </template>
-              </select>
-            </div>
-          </div>
-        </div>
+        <c-flow-screen-navigator-picklist
+          name="btn3Style"
+          label="Button 3 Style"
+          value={btn3Style}
+          options={styles}
+          onchange={handleChange}
+        ></c-flow-screen-navigator-picklist>
       </div>
     </lightning-accordion-section>
+
     <lightning-accordion-section name="btn4" label="Button 4">
       <div class="slds-p-around_xx-small">
         <lightning-input
           type="text"
           label="Button 4 Label"
+          name="btn4Label"
           value={btn4Label}
           onchange={handleChange}
         ></lightning-input>
       </div>
       <div class="slds-p-around_xx-small">
-        <div class="slds-form-element">
-          <label class="slds-form-element__label" for="nav-04"
-            >Button 4 Navigation Action</label
-          >
-          <div class="slds-form-element__control">
-            <div class="slds-select_container">
-              <select class="slds-select" id="nav-04">
-                <option value="">Please select</option>
-                <template for:each={_actions} for:item="action">
-                  <option key={action}>
-                    {action}
-                  </option>
-                </template>
-              </select>
-            </div>
-          </div>
-        </div>
+        <c-flow-screen-navigator-picklist
+          name="btn4Action"
+          label="Button 4 Navigation Action"
+          value={btn4Action}
+          options={actions}
+          onchange={handleChange}
+        ></c-flow-screen-navigator-picklist>
       </div>
       <div class="slds-p-around_xx-small">
-        <div class="slds-form-element">
-          <label class="slds-form-element__label" for="style-04"
-            >Button 4 Style</label
-          >
-          <div class="slds-form-element__control">
-            <div class="slds-select_container">
-              <select class="slds-select" id="style-04">
-                <option value="">Please select</option>
-                <template for:each={_styles} for:item="style">
-                  <option key={style}>
-                    {style}
-                  </option>
-                </template>
-              </select>
-            </div>
-          </div>
-        </div>
+        <c-flow-screen-navigator-picklist
+          name="btn4Style"
+          label="Button 4 Style"
+          value={btn4Style}
+          options={styles}
+          onchange={handleChange}
+        ></c-flow-screen-navigator-picklist>
       </div>
     </lightning-accordion-section>
   </lightning-accordion>

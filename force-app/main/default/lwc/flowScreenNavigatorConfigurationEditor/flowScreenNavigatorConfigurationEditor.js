@@ -2,7 +2,8 @@ import { LightningElement, api } from "lwc";
 
 export default class FlowScreenNavigatorConfigurationEditor extends LightningElement {
   _inputVariables = [];
-  actions = ["PAUSE", "NEXT", "BACK", "FINISH"];
+  // actions = ["PAUSE", "NEXT", "BACK", "FINISH"];
+  actions = ["Advance", "Back", "Pause"];
   styles = ["Base", "Neutral", "Brand", "Destructive", "Success", "Inverse"];
 
   @api
@@ -10,14 +11,10 @@ export default class FlowScreenNavigatorConfigurationEditor extends LightningEle
     return this._inputVariables;
   }
 
-  // Set a field with the data that was stored from the flow.
-  // This data includes the public volume property of the custom volume
-  // component.
   set inputVariables(variables) {
     this._inputVariables = variables || [];
   }
 
-  // Get the value of the btn1Label input variable.
   get btn1Label() {
     return this.getInputVariableValue("btn1Label");
   }
@@ -74,9 +71,7 @@ export default class FlowScreenNavigatorConfigurationEditor extends LightningEle
   handleChange(e) {
     if (e && e.detail) {
       const fieldName = e.currentTarget.name;
-      console.log("fieldname:", fieldName);
       const newValue = e.detail.value;
-      console.log("newvalue", newValue);
       this.dispatchEvent(
         new CustomEvent("configuration_editor_input_value_changed", {
           bubbles: true,
