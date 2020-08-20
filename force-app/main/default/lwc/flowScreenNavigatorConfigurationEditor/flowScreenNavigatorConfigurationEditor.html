@@ -37,6 +37,16 @@
             ></c-flow-screen-navigator-picklist>
           </div>
           <div class="slds-size_1-of-1">
+            <c-flow-screen-navigator-picklist
+              name={button.index}
+              label="Button Position"
+              value={button.position}
+              options={positions}
+              type="position"
+              onchange={handleChange}
+            ></c-flow-screen-navigator-picklist>
+          </div>
+          <div class="slds-size_1-of-1">
             <lightning-button-icon
               name={button.index}
               icon-name="utility:delete"

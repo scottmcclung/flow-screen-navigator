@@ -87,6 +87,43 @@ export default class FlowScreenNavigator extends LightningElement {
     this.dispatchEvent(new FlowNavigationFinishEvent());
   }
 
+  /**
+   * Returns buttons in position left.
+   */
+  get buttonsLeft() {
+    return this.buttons.filter((button) => {
+      return (
+        Object.prototype.hasOwnProperty.call(button, "position") &&
+        button.position === "Left"
+      );
+    });
+  }
+
+  /**
+   * Returns buttons in position right.  Default position for anything missing the position setting.
+   */
+  get buttonsRight() {
+    return this.buttons.filter((button) => {
+      return (
+        !Object.prototype.hasOwnProperty.call(button, "position") ||
+        !button.position ||
+        button.position === "Right"
+      );
+    });
+  }
+
+  /**
+   * Returns buttons in position center.
+   */
+  get buttonsCenter() {
+    return this.buttons.filter((button) => {
+      return (
+        Object.prototype.hasOwnProperty.call(button, "position") &&
+        button.position === "Center"
+      );
+    });
+  }
+
   handlePause() {
     this.dispatchEvent(new CustomEvent("pause"));
     this.pause();

@@ -4,6 +4,7 @@ export default class FlowScreenNavigatorConfigurationEditor extends LightningEle
   @track config = { buttons: [] };
   actions = ["Advance", "Back", "Pause"];
   styles = ["Base", "Neutral", "Brand", "Destructive", "Success", "Inverse"];
+  positions = ["Right", "Left", "Center"];
 
   /**
    * InputVariables
@@ -78,7 +79,8 @@ export default class FlowScreenNavigatorConfigurationEditor extends LightningEle
       index: "Button " + (this.config.buttons.length + 1),
       label: "",
       action: "",
-      style: ""
+      style: "",
+      position: ""
     });
     this.sendUpdate();
   }
