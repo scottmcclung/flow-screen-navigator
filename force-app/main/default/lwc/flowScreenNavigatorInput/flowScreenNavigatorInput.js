@@ -19,7 +19,7 @@ export default class FlowScreenNavigatorInput extends LightningElement {
   @api
   validate() {
     if (this.value) return;
-    this.errorString = "The button label is required";
+    this.errorString = "Please enter a value";
     this.enableErrorMode();
     return {
       key: "Button Label",
