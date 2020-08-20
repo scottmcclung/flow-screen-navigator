@@ -2,40 +2,15 @@
   <div
     class="slds-size_full slds-p-vertical_small slds-border_top slds-grid slds-grid_align-end"
   >
-    <div if:true={showBtn1} class="slds-p-horizontal_xx-small">
-      <c-flow-screen-navigator-button
-        name={btn1Label}
-        label={btn1Label}
-        variant={btn1Style}
-        onclick={handleButtonClick}
-      ></c-flow-screen-navigator-button>
-    </div>
-
-    <div if:true={showBtn2} class="slds-p-horizontal_xx-small">
-      <c-flow-screen-navigator-button
-        name={btn2Label}
-        label={btn2Label}
-        variant={btn2Style}
-        onclick={handleButtonClick}
-      ></c-flow-screen-navigator-button>
-    </div>
-
-    <div if:true={showBtn3} class="slds-p-horizontal_xx-small">
-      <c-flow-screen-navigator-button
-        name={btn3Label}
-        label={btn3Label}
-        variant={btn3Style}
-        onclick={handleButtonClick}
-      ></c-flow-screen-navigator-button>
-    </div>
-
-    <div if:true={showBtn4} class="slds-p-horizontal_xx-small">
-      <c-flow-screen-navigator-button
-        name={btn4Label}
-        label={btn4Label}
-        variant={btn4Style}
-        onclick={handleButtonClick}
-      ></c-flow-screen-navigator-button>
-    </div>
+    <template for:each={buttons} for:item="button">
+      <div class="slds-p-horizontal_xx-small" key={button.label}>
+        <c-flow-screen-navigator-button
+          name={button.label}
+          label={button.label}
+          variant={button.style}
+          onclick={handleButtonClick}
+        ></c-flow-screen-navigator-button>
+      </div>
+    </template>
   </div>
 </template>

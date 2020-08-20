@@ -1,127 +1,59 @@
 <template>
-  <lightning-accordion
-    onsectiontoggle={handleToggleSection}
-    active-section-name="btn1"
-    allow-multiple-sections-open
-  >
-    <lightning-accordion-section name="btn1" label="Button 1">
-      <div class="slds-p-around_xx-small">
-        <lightning-input
-          type="text"
-          label="Button 1 Label"
-          name="btn1Label"
-          value={btn1Label}
-          onchange={handleChange}
-        ></lightning-input>
-      </div>
-      <div class="slds-p-around_xx-small">
-        <c-flow-screen-navigator-picklist
-          name="btn1Action"
-          label="Button 1 Navigation Action"
-          value={btn1Action}
-          options={actions}
-          onchange={handleChange}
-        ></c-flow-screen-navigator-picklist>
-      </div>
-      <div class="slds-p-around_xx-small">
-        <c-flow-screen-navigator-picklist
-          name="btn1Style"
-          label="Button 1 Style"
-          value={btn1Style}
-          options={styles}
-          onchange={handleChange}
-        ></c-flow-screen-navigator-picklist>
-      </div>
-    </lightning-accordion-section>
-
-    <lightning-accordion-section name="btn2" label="Button 2">
-      <div class="slds-p-around_xx-small">
-        <lightning-input
-          type="text"
-          label="Button 2 Label"
-          name="btn2Label"
-          value={btn2Label}
-          onchange={handleChange}
-        ></lightning-input>
-      </div>
-      <div class="slds-p-around_xx-small">
-        <c-flow-screen-navigator-picklist
-          name="btn2Action"
-          label="Button 2 Navigation Action"
-          value={btn2Action}
-          options={actions}
-          onchange={handleChange}
-        ></c-flow-screen-navigator-picklist>
-      </div>
-      <div class="slds-p-around_xx-small">
-        <c-flow-screen-navigator-picklist
-          name="btn2Style"
-          label="Button 2 Style"
-          value={btn2Style}
-          options={styles}
-          onchange={handleChange}
-        ></c-flow-screen-navigator-picklist>
-      </div>
-    </lightning-accordion-section>
-
-    <lightning-accordion-section name="btn3" label="Button 3">
-      <div class="slds-p-around_xx-small">
-        <lightning-input
-          type="text"
-          label="Button 3 Label"
-          name="btn3Label"
-          value={btn3Label}
-          onchange={handleChange}
-        ></lightning-input>
-      </div>
-      <div class="slds-p-around_xx-small">
-        <c-flow-screen-navigator-picklist
-          name="btn3Action"
-          label="Button 3 Navigation Action"
-          value={btn3Action}
-          options={actions}
-          onchange={handleChange}
-        ></c-flow-screen-navigator-picklist>
-      </div>
-      <div class="slds-p-around_xx-small">
-        <c-flow-screen-navigator-picklist
-          name="btn3Style"
-          label="Button 3 Style"
-          value={btn3Style}
-          options={styles}
-          onchange={handleChange}
-        ></c-flow-screen-navigator-picklist>
-      </div>
-    </lightning-accordion-section>
-
-    <lightning-accordion-section name="btn4" label="Button 4">
-      <div class="slds-p-around_xx-small">
-        <lightning-input
-          type="text"
-          label="Button 4 Label"
-          name="btn4Label"
-          value={btn4Label}
-          onchange={handleChange}
-        ></lightning-input>
-      </div>
-      <div class="slds-p-around_xx-small">
-        <c-flow-screen-navigator-picklist
-          name="btn4Action"
-          label="Button 4 Navigation Action"
-          value={btn4Action}
-          options={actions}
-          onchange={handleChange}
-        ></c-flow-screen-navigator-picklist>
-      </div>
-      <div class="slds-p-around_xx-small">
-        <c-flow-screen-navigator-picklist
-          name="btn4Style"
-          label="Button 4 Style"
-          value={btn4Style}
-          options={styles}
-          onchange={handleChange}
-        ></c-flow-screen-navigator-picklist>
-      </div>
-    </lightning-accordion-section>
+  <lightning-accordion allow-multiple-sections-open>
+    <template for:each={buttons} for:item="button">
+      <lightning-accordion-section
+        name={button.index}
+        label={button.index}
+        key={button.index}
+      >
+        <div class="slds-grid slds-wrap">
+          <div class="slds-size_1-of-1">
+            <c-flow-screen-navigator-input
+              name={button.index}
+              label="Button Label"
+              value={button.label}
+              type="label"
+              onchange={handleChange}
+            ></c-flow-screen-navigator-input>
+          </div>
+          <div class="slds-size_1-of-1">
+            <c-flow-screen-navigator-picklist
+              name={button.index}
+              label="Navigation Action"
+              value={button.action}
+              options={actions}
+              type="action"
+              onchange={handleChange}
+            ></c-flow-screen-navigator-picklist>
+          </div>
+          <div class="slds-size_1-of-1">
+            <c-flow-screen-navigator-picklist
+              name={button.index}
+              label="Button Style"
+              value={button.style}
+              options={styles}
+              type="style"
+              onchange={handleChange}
+            ></c-flow-screen-navigator-picklist>
+          </div>
+          <div class="slds-size_1-of-1">
+            <lightning-button-icon
+              name={button.index}
+              icon-name="utility:delete"
+              alternative-text="Delete"
+              class="slds-m-left_xx-small slds-float_right"
+              title="Delete"
+              variant="container"
+              onclick={handleDeleteButtonClick}
+            ></lightning-button-icon>
+          </div>
+        </div>
+      </lightning-accordion-section>
+    </template>
   </lightning-accordion>
+  <lightning-button
+    label="Add Button"
+    variant="Neutral"
+    onclick={handleAddButtonClick}
+  ></lightning-button>
 </template>
