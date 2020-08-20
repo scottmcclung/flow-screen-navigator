@@ -1,0 +1,14 @@
+<template>
+  <div class="slds-form-element slds-size_1-of-1">
+    <lightning-input
+      type="text"
+      label={label}
+      name={name}
+      value={value}
+      onchange={handleChange}
+    ></lightning-input>
+    <div class="slds-form-element__help" if:true={errorString}>
+      {errorString}
+    </div>
+  </div>
+</template>

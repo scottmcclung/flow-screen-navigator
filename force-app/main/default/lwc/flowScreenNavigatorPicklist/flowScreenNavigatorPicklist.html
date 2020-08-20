@@ -5,13 +5,16 @@
       <div class="slds-select_container">
         <select class="slds-select" id="picklist-01" onchange={handleChange}>
           <option value="">Please select</option>
-          <template for:each={options} for:item="option">
-            <option key={option.value} selected={option.selected}>
-              {option.value}
+          <template for:each={choices} for:item="choice">
+            <option key={choice.value} selected={choice.selected}>
+              {choice.value}
             </option>
           </template>
         </select>
       </div>
+    </div>
+    <div class="slds-form-element__help" if:true={errorString}>
+      {errorString}
     </div>
   </div>
 </template>

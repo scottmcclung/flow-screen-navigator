@@ -1,50 +1,30 @@
 import { LightningElement, api, track } from "lwc";
 
-export default class FlowScreenNavigatorPicklist extends LightningElement {
-  @track errorString;
-  @track choices = [];
+export default class FlowScreenNavigatorInput extends LightningElement {
   @api label;
   @api name;
   @api type;
 
+  @track errorString;
+
   @api
   get value() {
-    return this._value || "";
-  }
-  set value(value) {
-    this._value = value;
-    this.mapOptions(this.options);
+    return this._value;
   }
 
-  @api
-  get options() {
-    return this._options || [];
-  }
-
-  set options(values) {
-    this._options = values || [];
-    this.mapOptions(this._options);
+  set value(variable) {
+    this._value = variable;
   }
 
   @api
   validate() {
-    if (this._value) return;
-    this.errorString = "Please make a selection";
+    if (this.value) return;
+    this.errorString = "The button label is required";
     this.enableErrorMode();
     return {
-      key: "Picklist",
+      key: "Button Label",
       errorString: this.errorString
     };
-  }
-
-  mapOptions(values) {
-    values = values || [];
-    this.choices = values.map((value) => {
-      return {
-        value: value,
-        selected: value === this.value ? "selected" : ""
-      };
-    });
   }
 
   handleChange(e) {
@@ -54,7 +34,6 @@ export default class FlowScreenNavigatorPicklist extends LightningElement {
     this.dispatchEvent(
       new CustomEvent("change", {
         bubbles: true,
-        composed: true,
         detail: {
           value: this._value,
           name: this.name,

@@ -1,66 +1,71 @@
-import { LightningElement, api } from "lwc";
+import { LightningElement, api, track } from "lwc";
 
 export default class FlowScreenNavigatorConfigurationEditor extends LightningElement {
-  _inputVariables = [];
-  // actions = ["PAUSE", "NEXT", "BACK", "FINISH"];
+  @track config = { buttons: [] };
   actions = ["Advance", "Back", "Pause"];
   styles = ["Base", "Neutral", "Brand", "Destructive", "Success", "Inverse"];
 
+  /**
+   * InputVariables
+   * Flow interface.  Platform injects an object of flow metadata.
+   *
+   */
   @api
   get inputVariables() {
-    return this._inputVariables;
+    return this._inputVariables || [];
   }
 
   set inputVariables(variables) {
-    this._inputVariables = variables || [];
+    if (!variables) return;
+    this._inputVariables = variables;
+    this.config = JSON.parse(
+      this.getInputVariableValue("config") || '{ "buttons": [] }'
+    );
+    if (this.buttons.length === 0) this.addButton();
   }
 
-  get btn1Label() {
-    return this.getInputVariableValue("btn1Label");
+  @api validate() {
+    const errors = [];
+    const formElements = this.template.querySelectorAll(
+      "c-flow-screen-navigator-input, c-flow-screen-navigator-picklist"
+    );
+    formElements.forEach((element) => {
+      const error = element.validate();
+      if (error) errors.push(error);
+    });
+    return errors;
   }
 
-  get btn1Action() {
-    return this.getInputVariableValue("btn1Action");
+  get buttons() {
+    return (
+      Object.prototype.hasOwnProperty.call(this.config, "buttons") &&
+      this.config.buttons
+    );
   }
 
-  get btn1Style() {
-    return this.getInputVariableValue("btn1Style");
+  handleChange(e) {
+    if (!e) return;
+    const fieldName = e.detail.name;
+    const newValue = e.detail.value;
+    const type = e.detail.type;
+    const buttonIndex = this.buttons.findIndex((button) => {
+      return button.index === fieldName;
+    });
+    this.buttons[buttonIndex][type] = newValue;
+    this.sendUpdate();
   }
 
-  get btn2Label() {
-    return this.getInputVariableValue("btn2Label");
+  handleAddButtonClick(e) {
+    this.addButton();
   }
 
-  get btn2Action() {
-    return this.getInputVariableValue("btn2Action");
-  }
-
-  get btn2Style() {
-    return this.getInputVariableValue("btn2Style");
-  }
-
-  get btn3Label() {
-    return this.getInputVariableValue("btn3Label");
-  }
-
-  get btn3Action() {
-    return this.getInputVariableValue("btn3Action");
-  }
-
-  get btn3Style() {
-    return this.getInputVariableValue("btn3Style");
-  }
-
-  get btn4Label() {
-    return this.getInputVariableValue("btn4Label");
-  }
-
-  get btn4Action() {
-    return this.getInputVariableValue("btn4Action");
-  }
-
-  get btn4Style() {
-    return this.getInputVariableValue("btn4Style");
+  handleDeleteButtonClick(e) {
+    if (!e) return;
+    const fieldName = e.currentTarget.name;
+    const buttonIndex = this.buttons.findIndex((button) => {
+      return button.index === fieldName;
+    });
+    this.removeButton(buttonIndex);
   }
 
   getInputVariableValue(variableName) {
@@ -68,24 +73,40 @@ export default class FlowScreenNavigatorConfigurationEditor extends LightningEle
     return param && param.value;
   }
 
-  handleChange(e) {
-    if (e && e.detail) {
-      const fieldName = e.currentTarget.name;
-      const newValue = e.detail.value;
-      this.dispatchEvent(
-        new CustomEvent("configuration_editor_input_value_changed", {
-          bubbles: true,
-          cancelable: false,
-          composed: true,
-          detail: {
-            name: fieldName,
-            newValue,
-            newValueDataType: "String"
-          }
-        })
-      );
-    }
+  addButton() {
+    this.config.buttons.push({
+      index: "Button " + (this.config.buttons.length + 1),
+      label: "",
+      action: "",
+      style: ""
+    });
+    this.sendUpdate();
   }
 
-  handleToggleSection(e) {}
+  removeButton(buttonIndex) {
+    this.config.buttons = this.config.buttons
+      .filter((button, index) => {
+        return buttonIndex != index;
+      })
+      .map((button, index) => {
+        button.index = "Button " + (index + 1);
+        return button;
+      });
+    this.sendUpdate();
+  }
+
+  sendUpdate() {
+    this.dispatchEvent(
+      new CustomEvent("configuration_editor_input_value_changed", {
+        bubbles: true,
+        cancelable: false,
+        composed: true,
+        detail: {
+          name: "config",
+          newValue: JSON.stringify(this.config),
+          newValueDataType: "String"
+        }
+      })
+    );
+  }
 }
