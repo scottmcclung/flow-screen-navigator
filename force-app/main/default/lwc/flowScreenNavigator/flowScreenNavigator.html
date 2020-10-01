@@ -1,16 +1,47 @@
 <template>
   <div
-    class="slds-size_full slds-p-vertical_small slds-border_top slds-grid slds-grid_align-end"
+    class="slds-size_full slds-p-vertical_small slds-border_top slds-grid slds-grid_align-spread"
   >
-    <template for:each={buttons} for:item="button">
-      <div class="slds-p-horizontal_xx-small" key={button.label}>
-        <c-flow-screen-navigator-button
-          name={button.label}
-          label={button.label}
-          variant={button.style}
-          onclick={handleButtonClick}
-        ></c-flow-screen-navigator-button>
-      </div>
-    </template>
+    <!-- Position Left -->
+    <div class="slds-col slds-grid slds-wrap">
+      <template for:each={buttonsLeft} for:item="button">
+        <div class="slds-p-around_xx-small" key={button.label}>
+          <c-flow-screen-navigator-button
+            name={button.label}
+            label={button.label}
+            variant={button.style}
+            onclick={handleButtonClick}
+          ></c-flow-screen-navigator-button>
+        </div>
+      </template>
+    </div>
+
+    <!-- Position Center -->
+    <div class="slds-col slds-grid slds-wrap">
+      <template for:each={buttonsCenter} for:item="button">
+        <div class="slds-p-around_xx-small" key={button.label}>
+          <c-flow-screen-navigator-button
+            name={button.label}
+            label={button.label}
+            variant={button.style}
+            onclick={handleButtonClick}
+          ></c-flow-screen-navigator-button>
+        </div>
+      </template>
+    </div>
+
+    <!-- Position Right -->
+    <div class="slds-col slds-grid slds-wrap">
+      <template for:each={buttonsRight} for:item="button">
+        <div class="slds-p-around_xx-small" key={button.label}>
+          <c-flow-screen-navigator-button
+            name={button.label}
+            label={button.label}
+            variant={button.style}
+            onclick={handleButtonClick}
+          ></c-flow-screen-navigator-button>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
